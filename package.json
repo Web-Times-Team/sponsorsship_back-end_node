@@ -1,14 +1,26 @@
 {
-  "name": "back_end_node",
+  "name": "sponsorsship_back-end_node",
   "version": "1.0.0",
   "description": "back-end for sponsorship web site",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Faizou",
+  "author": {
+    "name": "Faizou",
+    "email": "faizouaremou@gmail.com"
+  },
   "license": "ISC",
   "dependencies": {
     "mysql": "^2.18.1"
+  },
+  "keywords": [
+    "MySql",
+    "Express.js",
+    "mvc"
+  ],
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/Web-Times-Team/sponsorsship_back-end_node.git"
   }
 }

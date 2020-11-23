@@ -178,5 +178,6 @@ constraint fk_transactions_ongName foreign key(ongName) references ong(name)
     });
   });
 });
-
+// Promisyfy all callback in this project
+// you can use util module for promisifycation 
 
