@@ -15,5 +15,4 @@ if (process.env.NODE_ENV === "production") {
     config.mysql.user = "root"
     config.mysql.password = process.argv[2]
 }
-
 module.exports = config;

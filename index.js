@@ -9,7 +9,8 @@
 
 const bash = require('child_process');
 const mysql = require('mysql');
-const config = require('./config');
+const configMsql = require('./config-mysql');
+const DbInstanciator = require('./DB/db-instanciator');
 
 bash.exec('chmod u+x creMySQLdb');
 
@@ -25,9 +26,9 @@ creMySQLdb.stderr.on('data', (data) => {
 
 // connect to database
 const con = mysql.createConnection({
-  host: config.mysql.host,
-  user: config.mysql.user,
-  password: config.mysql.password
+  host: configMsql.mysql.host,
+  user: configMsql.mysql.user,
+  password: configMsql.mysql.password
 });
 
 // create dataBase
@@ -181,3 +182,4 @@ constraint fk_transactions_ongName foreign key(ongName) references ong(name)
 // Promisyfy all callback in this project
 // you can use util module for promisifycation 
 
+dbInstanciator = new DbInstanciator();
