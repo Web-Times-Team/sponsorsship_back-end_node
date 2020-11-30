@@ -6,7 +6,7 @@ const mysql = require('mysql');
 const configMsql = require('../config-mysql');
 const dbconfig = require('./config');
 
-bash.exec('chmod u+x ./DB/creMySQLdb');
+bash.exec('chmod u+x ./db/creMySQLdb');
 
 const creMySQLdb = bash.exec('./DB/creMySQLdb');
 
@@ -44,9 +44,10 @@ const createTables = () => {
             table.describe.forEach((val, index )=> {
                 describe = `${describe} ${val.field} ${val.type} ${val.null} ${val.extra} ${index===(table.describe.length-1)?"":","}`
             });
+            console.log(describe);
             connection.query(`create table if not exists ${table.name}(
                 ${describe}
-        )` , (err, result) => {
+        )`, (err, result) => {
                 if (err) throw err;
                 console.log(`${table.name} table is created`);
             });
