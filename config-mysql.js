@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === "production") {
 } else {
 
     config.mysql.host = "localhost"
-    config.mysql.user = "root"
-    config.mysql.password = process.argv[2]
+    config.mysql.user = "node"
+    config.mysql.password = "nodeOneMany13"
 }
 module.exports = config;

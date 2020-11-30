@@ -24,21 +24,9 @@ const connection = mysql.createConnection({
     password: configMsql.mysql.password
 });
 
-const createDataBase = () => {
-    connection.query(`CREATE DATABASE IF NOT EXISTS ${dbconfig.dbName}`, (err, result) => {
-        if (err) throw err;
-        console.log("Database created");
-        createTables();
-    })
-};
 const createTables = () => {
     // create tables
     // it has enougth restrictions on table transaction, actually, one transaction can't have studentID, sponsorsID, donorID
-    connection.query("use one_to_many", (err, result) => {
-        if (err) throw err;
-        console.log("one_to_many is used");
-
-
         dbconfig.dbTables.forEach((table) => {
             let describe = "";
             table.describe.forEach((val, index )=> {
@@ -52,13 +40,13 @@ const createTables = () => {
                 console.log(`${table.name} table is created`);
             });
         });
-    });
+
 }
 
 connection.connect((err) => {
     if (err) throw err;
     console.log("Connected!");
-    createDataBase();
+    createTables();
 })
 
 module.exports = connection;
