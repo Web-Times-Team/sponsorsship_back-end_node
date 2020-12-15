@@ -9,3 +9,5 @@ create another tests strategies from node.js documentation
 how make chat database
 how social network database
 studies all contraint on mysql
+improve routes architecture
+add some middleware to my express app.

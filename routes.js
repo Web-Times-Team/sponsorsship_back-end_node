@@ -1,0 +1,1 @@
+exports.oneToMany = require('./routes/one-to-many');

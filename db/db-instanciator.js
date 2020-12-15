@@ -8,37 +8,46 @@ class MongoInterface {
     insertInTable() {
 
     };
-    getAllDataFromTable() { };
-    deleteData() { };
+    getAllDataFromTable() {};
+    deleteData() {};
 }
 class MysqlInterface {
     insertInTable(tableName, dataObj) {
-        connection.query(`insert into ${tableName} set?`, dataObj, (err, res) => {
-            if (err) return err;
-            return res;
-        })
+        return new Promise((resolve, reject) => {
+            connection.query(`insert into ${tableName} set?`, dataObj, (err, res) => {
+                if (err) reject(err);
+                resolve(res);
+            })
+        });
     };
+
     getAllDataFromTable(tableName) {
-        connection.query(`select * from ${tableName}`, (err, res) => {
-            if (err) return err;
-            return res;
-        })
+        return new Promise((resolve, reject) => {
+            connection.query(`select * from ${tableName}`, (err, res) => {
+                if (err) reject(err);
+                resolve(res);
+            })
+        });
     };
+
     deleteData(tableName, field, value) {
-        connection.query(`delete from ${tableName} where ${field} = "${value}"`, (err, res) => {
-            if (err) return err;
-            return res;
-        })
+        return new Promise((resolve, reject) => {
+            connection.query(`delete from ${tableName} where ${field} = "${value}"`, (err, res) => {
+                if (err) reject(err);
+                resolve(res);
+            })
+        });
     };
 }
 
 class DbInstanciator {
+
     constructor() {
         if (!dbType) {
-            const mysqlInterface = new MysqlInterface();
-            console.log(mysqlInterface);
+            this.dbInterface = new MysqlInterface();
+            console.log(this.dbInterface);
         } else {
-            const mongoInterface = new MongoInterface();
+            this.dbIinterface = new MongoInterface();
         }
     }
 }

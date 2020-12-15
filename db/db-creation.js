@@ -21,25 +21,25 @@ creMySQLdb.stderr.on('data', (data) => {
 const connection = mysql.createConnection({
     host: configMsql.mysql.host,
     user: configMsql.mysql.user,
-    password: configMsql.mysql.password
+    password: configMsql.mysql.password,
+    database: configMsql.mysql.database
 });
 
 const createTables = () => {
     // create tables
     // it has enougth restrictions on table transaction, actually, one transaction can't have studentID, sponsorsID, donorID
-        dbconfig.dbTables.forEach((table) => {
-            let describe = "";
-            table.describe.forEach((val, index )=> {
-                describe = `${describe} ${val.field} ${val.type} ${val.null} ${val.extra} ${index===(table.describe.length-1)?"":","}`
-            });
-            console.log(describe);
-            connection.query(`create table if not exists ${table.name}(
+    dbconfig.dbTables.forEach((table) => {
+        let describe = "";
+        table.describe.forEach((val, index) => {
+            describe = `${describe} ${val.field} ${val.type} ${val.null}${val.extra}${index===(table.describe.length-1)?"":","}`
+        });
+        connection.query(`create table if not exists ${table.name}(
                 ${describe}
         )`, (err, result) => {
-                if (err) throw err;
-                console.log(`${table.name} table is created`);
-            });
+            if (err) throw err;
+            console.log(`${table.name} table is created`);
         });
+    });
 
 }
 

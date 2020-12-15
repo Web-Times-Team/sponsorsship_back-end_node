@@ -180,5 +180,16 @@
 // });
 // Promisyfy all callback in this project
 // you can use util module for promisifycation 
-
+const express = require('express');
+const app = express();
+const routes = require('./configure');
+const bodyParser = require('body-parser');
 const dbcreation = require('./db/db-creation');
+app.use(bodyParser.urlencoded())
+app.use(bodyParser.json());
+app.use('/', routes.oneToMany);
+app.listen(3000, () => {
+
+    console.log('One-to-many App Http is listenning in port 3000');
+
+});
