@@ -43,10 +43,41 @@ const createTables = () => {
 
 }
 
+const dropTables = async() => {
+
+        dbconfig.dbTables.reverse();
+        for (const table of dbconfig.dbTables) {
+            const result = await new Promise((resolve, reject) => {
+                connection.query(`drop table ${table.name}`, (err, result) => {
+                    if (err) {
+                        if (err.code === 'ER_BAD_TABLE_ERROR') {
+                            resolve(err.code)
+                        } else {
+                            reject(err)
+                        }
+
+                    } else {
+                        resolve('is dropped');
+                    }
+                });
+            }).catch((err) => {
+                throw err;
+            });
+            console.log(result);
+        }
+        dbconfig.dbTables.reverse();
+    } // use only for developpement mode 
+
+settingUp = async() => {
+    await dropTables();
+    createTables();
+}
+
 connection.connect((err) => {
     if (err) throw err;
-    console.log("Connected!");
-    createTables();
+    console.log("Connected! to sql");
+    settingUp();
+
 })
 
 module.exports = connection;

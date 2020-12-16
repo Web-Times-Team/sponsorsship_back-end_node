@@ -1,5 +1,5 @@
 const dbInstanciator = require('../db/db-instanciator')
-const dbInterface = new dbInstanciator().dbInterface;
+const dbInterface = dbInstanciator.dbInterface;
 exports.getArticles = (req, res) => {
     dbInterface.getAllDataFromTable('articles').then((result) => {
         res.json({

@@ -3,15 +3,24 @@
  */
 const dbType = require('./db-type')
 const connection = require('./db-creation');
-
-class MongoInterface {
+class Dbinterface {
     insertInTable() {
-
+        throw new Error('you have to implement the method doSomething')
     };
+    getAllDataFromTable() {
+        throw new Error('you have to implement the method doSomething')
+    };
+    deleteData() {
+        throw new Error('you have to implement the method doSomething')
+    };
+}
+
+class MongoInterface extends Dbinterface {
+    insertInTable() {};
     getAllDataFromTable() {};
     deleteData() {};
 }
-class MysqlInterface {
+class MysqlInterface extends Dbinterface {
     insertInTable(tableName, dataObj) {
         return new Promise((resolve, reject) => {
             connection.query(`insert into ${tableName} set?`, dataObj, (err, res) => {
@@ -48,8 +57,9 @@ class DbInstanciator {
             console.log(this.dbInterface);
         } else {
             this.dbIinterface = new MongoInterface();
+            console.log(this.dbInterface);
         }
     }
 }
 
-module.exports = DbInstanciator;
+module.exports = new DbInstanciator();

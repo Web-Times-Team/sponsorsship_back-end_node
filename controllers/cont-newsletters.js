@@ -1,5 +1,5 @@
 const dbInstanciator = require('../db/db-instanciator')
-const dbInterface = new dbInstanciator().dbInterface;
+const dbInterface = dbInstanciator.dbInterface;
 exports.postSubscriber = (req, res) => {
 
     dbInterface.insertInTable('subscribers', req.body).then((result) => {
