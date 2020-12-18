@@ -60,8 +60,6 @@ const dropTables = async() => {
                         resolve('is dropped');
                     }
                 });
-            }).catch((err) => {
-                throw err;
             });
             console.log(result);
         }
@@ -77,7 +75,6 @@ connection.connect((err) => {
     if (err) throw err;
     console.log("Connected! to sql");
     settingUp();
-
 })
 
 module.exports = connection;

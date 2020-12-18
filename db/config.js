@@ -188,12 +188,6 @@ const dbTables = [{
                 extra: ""
             },
             {
-                field: "date",
-                type: "date",
-                null: "not null",
-                extra: ""
-            },
-            {
                 field: "constraint",
                 type: "pk_sponsorships_studentId_sponsorId",
                 null: "",
@@ -230,6 +224,28 @@ const dbTables = [{
             {
                 field: "constraint",
                 type: "pk_ongs_name",
+                null: "",
+                extra: "primary key(name)"
+            }
+        ]
+    },
+    {
+        name: "workingCountrys",
+        describe: [{
+                field: "name",
+                type: "varchar(255)",
+                null: "",
+                extra: ""
+            },
+            {
+                field: "ong",
+                type: "varchar(255)",
+                null: "",
+                extra: ""
+            },
+            {
+                field: "constraint",
+                type: "pk_workingCountry_name",
                 null: "",
                 extra: "primary key(name)"
             }
@@ -359,6 +375,12 @@ const dbTables = [{
             {
                 field: "title",
                 type: "varchar(255)",
+                null: "not null",
+                extra: ""
+            },
+            {
+                field: "summary",
+                type: "text",
                 null: "not null",
                 extra: ""
             },

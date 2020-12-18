@@ -4,21 +4,25 @@
 const dbType = require('./db-type')
 const connection = require('./db-creation');
 class Dbinterface {
-    insertInTable() {
+    insertInTable(tableName, dataObj) {
         throw new Error('you have to implement the method doSomething')
     };
-    getAllDataFromTable() {
+    getAllDataFromTable(tableName) {
         throw new Error('you have to implement the method doSomething')
     };
-    deleteData() {
+    getAllDataFromTableWhere(tableName, field, value) {
+        throw new Error('you have to implement the method doSomething')
+    };
+    deleteData(tableName, field, value) {
         throw new Error('you have to implement the method doSomething')
     };
 }
 
 class MongoInterface extends Dbinterface {
-    insertInTable() {};
-    getAllDataFromTable() {};
-    deleteData() {};
+    insertInTable(tableName, dataObj) {};
+    getAllDataFromTable(tableName) {};
+    getAllDataFromTableWhere(tableName, field, value) {};
+    deleteData(tableName, field, value) {};
 }
 class MysqlInterface extends Dbinterface {
     insertInTable(tableName, dataObj) {
@@ -39,9 +43,18 @@ class MysqlInterface extends Dbinterface {
         });
     };
 
+    getAllDataFromTableWhere(tableName, field, value) {
+        return new Promise((resolve, reject) => {
+            connection.query(`select * from ${tableName} where ${field} = ?`, [value[Object.keys(value)[0]]], (err, res) => {
+                if (err) reject(err);
+                resolve(res);
+            })
+        });
+    };
+
     deleteData(tableName, field, value) {
         return new Promise((resolve, reject) => {
-            connection.query(`delete from ${tableName} where ${field} = "${value}"`, (err, res) => {
+            connection.query(`delete from ${tableName} where ${field} = "${value[Object.keys(value)[0]]}"`, (err, res) => {
                 if (err) reject(err);
                 resolve(res);
             })
