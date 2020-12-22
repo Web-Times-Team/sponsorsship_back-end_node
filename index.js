@@ -185,6 +185,9 @@ const app = express();
 const routes = require('./configure');
 const bodyParser = require('body-parser');
 const dbcreation = require('./db/db-creation');
+const cors = require('cors');
+
+app.use(cors());
 app.use(bodyParser.urlencoded())
 app.use(bodyParser.json());
 app.use('/', routes.oneToMany);

@@ -30,7 +30,7 @@ const dbTables = [{
             },
             {
                 field: "country",
-                type: "varchar(255)",
+                type: "enum('USA', 'Canada', 'France', 'Benin')",
                 null: "not null",
                 extra: ""
             },
@@ -89,7 +89,7 @@ const dbTables = [{
             },
             {
                 field: "country",
-                type: "varchar(255)",
+                type: "enum('USA', 'Canada', 'France', 'Benin')",
                 null: "not null",
                 extra: ""
             },
@@ -102,7 +102,7 @@ const dbTables = [{
             {
                 field: "photo",
                 type: "text",
-                null: "not null",
+                null: "",
                 extra: ""
             },
             {
@@ -148,7 +148,7 @@ const dbTables = [{
             },
             {
                 field: "country",
-                type: "varchar(255)",
+                type: "enum('USA', 'Canada', 'France', 'Benin')",
                 null: "not null",
                 extra: ""
             },
@@ -161,7 +161,7 @@ const dbTables = [{
             {
                 field: "photo",
                 type: "text",
-                null: "not null",
+                null: "",
                 extra: ""
             },
             {
@@ -178,13 +178,13 @@ const dbTables = [{
         describe: [{
                 field: "studentId",
                 type: "int",
-                null: "not null",
+                null: "",
                 extra: ""
             },
             {
                 field: "sponsorId",
                 type: "int",
-                null: "not null",
+                null: "",
                 extra: ""
             },
             {
@@ -230,6 +230,52 @@ const dbTables = [{
         ]
     },
     {
+        name: "articles",
+        describe: [{
+                field: "articleNu",
+                type: "int",
+                null: "",
+                extra: "auto_increment"
+            },
+            {
+                field: "title",
+                type: "varchar(255)",
+                null: "not null",
+                extra: ""
+            },
+            {
+                field: "summary",
+                type: "text",
+                null: "not null",
+                extra: ""
+            },
+            {
+                field: "content",
+                type: "text",
+                null: "not null",
+                extra: ""
+            },
+            {
+                field: "ong",
+                type: "varchar(255)",
+                null: "not null",
+                extra: ""
+            },
+            {
+                field: "constraint",
+                type: "pk_articles_id",
+                null: "",
+                extra: "primary key(articleNu)"
+            },
+            {
+                field: "constraint",
+                type: "fk_articles_ong",
+                null: "",
+                extra: "foreign key(ong) references ongs(name)"
+            }
+        ]
+    },
+    {
         name: "workingCountrys",
         describe: [{
                 field: "name",
@@ -248,6 +294,12 @@ const dbTables = [{
                 type: "pk_workingCountry_name",
                 null: "",
                 extra: "primary key(name)"
+            },
+            {
+                field: "constraint",
+                type: "fk_workingCountrys_ong",
+                null: "",
+                extra: "foreign key(ong) references ongs(name)"
             }
         ]
     },
@@ -365,40 +417,6 @@ const dbTables = [{
         ]
     },
     {
-        name: "articles",
-        describe: [{
-                field: "articleNu",
-                type: "int",
-                null: "",
-                extra: "auto_increment"
-            },
-            {
-                field: "title",
-                type: "varchar(255)",
-                null: "not null",
-                extra: ""
-            },
-            {
-                field: "summary",
-                type: "text",
-                null: "not null",
-                extra: ""
-            },
-            {
-                field: "content",
-                type: "text",
-                null: "not null",
-                extra: ""
-            },
-            {
-                field: "constraint",
-                type: "pk_articles_id",
-                null: "",
-                extra: "primary key(articleNu)"
-            }
-        ]
-    },
-    {
         name: "newsLetters",
         describe: [{
                 field: "id",
@@ -409,14 +427,14 @@ const dbTables = [{
             {
                 field: "title",
                 type: "varchar(255)",
-                null: "",
+                null: "not null",
                 extra: ""
 
             },
             {
                 field: "content",
                 type: "varchar(255)",
-                null: "",
+                null: "not null",
                 extra: ""
 
             },
@@ -439,7 +457,7 @@ const dbTables = [{
             {
                 field: "name",
                 type: "varchar(255)",
-                null: "",
+                null: "not null",
                 extra: ""
             },
             {
