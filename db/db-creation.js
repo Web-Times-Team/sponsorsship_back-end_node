@@ -8,7 +8,7 @@ const dbconfig = require('./config');
 
 bash.exec('chmod u+x ./db/creMySQLdb');
 
-const creMySQLdb = bash.exec('./DB/creMySQLdb');
+const creMySQLdb = bash.exec('./db/creMySQLdb');
 
 creMySQLdb.stdout.on('data', (data) => {
     console.log(data);

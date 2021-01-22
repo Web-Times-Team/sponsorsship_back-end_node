@@ -5,6 +5,7 @@ npm install
 node index.js
 
 # to do list
+Mettre dbinstanciator dans une bibliothèque
 finish modelling implementation
 create another tests strategies from node.js documentation
 how make chat database

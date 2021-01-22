@@ -116,7 +116,7 @@ const dbTables = [{
                 type: "pk_talents_id",
                 null: "",
                 extra: "primary key (id)"
-            },
+            }
 
         ]
     },

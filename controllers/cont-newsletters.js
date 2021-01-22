@@ -4,7 +4,7 @@ exports.postSubscriber = (req, res) => {
 
     dbInterface.insertInTable('subscribers', req.body).then((result) => {
         res.json({
-            articles: result
+            subscribers: result
         });
     }).catch((err) => {
         res.status(503).send(err);
