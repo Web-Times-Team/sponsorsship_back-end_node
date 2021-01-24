@@ -1,22 +1,22 @@
 /**
  * database creation
  */
-const bash = require('child_process');
+// const bash = require('child_process');
 const mysql = require('mysql');
 const configMsql = require('../config-mysql');
 const dbconfig = require('./config');
 
-bash.exec('chmod u+x ./db/creMySQLdb');
+// bash.exec('chmod u+x ./db/creMySQLdb');
 
-const creMySQLdb = bash.exec('./db/creMySQLdb');
+// const creMySQLdb = bash.exec('./db/creMySQLdb');
 
-creMySQLdb.stdout.on('data', (data) => {
-    console.log(data);
-});
+// creMySQLdb.stdout.on('data', (data) => {
+//     console.log(data);
+// });
 
-creMySQLdb.stderr.on('data', (data) => {
-    console.log(data);
-});
+// creMySQLdb.stderr.on('data', (data) => {
+//     console.log(data);
+// });
 
 const connection = mysql.createConnection({
     host: configMsql.mysql.host,
