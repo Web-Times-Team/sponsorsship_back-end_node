@@ -182,15 +182,13 @@
 // you can use util module for promisifycation 
 const express = require('express');
 const app = express();
-const routes = require('./configure');
-const bodyParser = require('body-parser');
-const dbcreation = require('./db/db-creation');
-const cors = require('cors');
+const configuration = require('./configure');
 
-app.use(cors());
-app.use(bodyParser.urlencoded())
-app.use(bodyParser.json());
-app.use('/', routes.oneToMany);
+app.use(configuration.cors());
+app.use(configuration.bodyParser.urlencoded())
+app.use(configuration.bodyParser.json());
+app.use('/welcome', configuration.welcomeRoutes);
+app.use('/newsletters', configuration.newslettersRoutes);
 app.listen(3000, () => {
 
     console.log('One-to-many App Http is listenning in port 3000');
